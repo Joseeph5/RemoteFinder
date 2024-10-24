@@ -1,4 +1,5 @@
 import Background from './Background';
+import BookmarksButton from './BookmarksButton';
 import Container from './Container';
 import Footer from './Footer';
 import Header, { HeaderTop } from './Header';
@@ -8,11 +9,7 @@ function App() {
   return (
     <>
       <Background />
-      <Header>
-        <HeaderTop>
-          <Logo />
-        </HeaderTop>
-      </Header>
+      <Header />
       <Container />
       <Footer />
     </>
