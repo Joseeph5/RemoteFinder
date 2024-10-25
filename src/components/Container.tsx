@@ -1,10 +1,10 @@
 import JobItemContent from './JobItemContent';
 import Sidebar from './Sidebar';
 
-export default function Container() {
+export default function Container({ jobList, isLoading }) {
   return (
     <div className='container'>
-      <Sidebar />
+      <Sidebar jobList={jobList} />
       <JobItemContent />
     </div>
   );

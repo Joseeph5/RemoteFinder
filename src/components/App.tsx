@@ -1,16 +1,35 @@
+import { useEffect, useState } from 'react';
 import Background from './Background';
-import BookmarksButton from './BookmarksButton';
 import Container from './Container';
 import Footer from './Footer';
-import Header, { HeaderTop } from './Header';
-import Logo from './Logo';
+import Header from './Header';
 
 function App() {
+  const [searchText, setSearchText] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
+  const [jobList, setjobList] = useState([]);
+
+  useEffect(() => {
+    if (!searchText) return;
+
+    const fetchedData = async () => {
+      const response = await fetch(
+        `https://remotive.com/api/remote-jobs?limit=10`
+      );
+
+      const data = await response.json();
+
+      setjobList(data);
+    };
+
+    fetchedData();
+  }, [searchText]);
+
   return (
     <>
       <Background />
-      <Header />
-      <Container />
+      <Header searchText={searchText} setSearchText={setSearchText} />
+      <Container jobList={jobList} />
       <Footer />
     </>
   );
