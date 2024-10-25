@@ -2,14 +2,14 @@ import BookmarksButton from './BookmarksButton';
 import Logo from './Logo';
 import SearchForm from './SearchForm';
 
-export default function Header() {
+export default function Header({ searchText, setSearchText }) {
   return (
     <header className='header'>
       <HeaderTop>
         <Logo />
         <BookmarksButton />
       </HeaderTop>
-      <SearchForm />
+      <SearchForm searchText={searchText} setSearchText={setSearchText} />
     </header>
   );
 }
