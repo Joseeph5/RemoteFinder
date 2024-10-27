@@ -4,11 +4,24 @@ import { JobItem } from '../lib/types.ts';
 
 type JobListItemProps = {
   jobItem: JobItem;
+  activeId: string;
+  handleActiveClick: (id: string) => void;
 };
 
-export default function JobListItem({ jobItem }: JobListItemProps) {
+export default function JobListItem({
+  jobItem,
+  activeId,
+  handleActiveClick,
+}: JobListItemProps) {
   return (
-    <li>
+    <li
+      onClick={() => {
+        handleActiveClick(jobItem?.id);
+      }}
+      className={`job-item ${
+        activeId === jobItem?.id ? 'job-item--active' : ''
+      }`}
+    >
       <a href={`#${jobItem?.id}`} className='job-item__link'>
         <div className='job-item__badge'>
           <img src={jobItem?.company_logo} alt='' width={50} height={50} />
