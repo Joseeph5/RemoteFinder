@@ -21,7 +21,7 @@ function App() {
 
       const data = await response.json();
 
-      setjobList(data);
+      setjobList(data?.jobs);
 
       setIsLoading(false);
     };

@@ -1,15 +1,9 @@
 import BookmarkIcon from './BookmarkIcon';
 import { getDayDifference } from '../utils/job.ts';
+import { JobItem } from '../lib/types.ts';
 
 type JobListItemProps = {
-  jobItem: {
-    id: string;
-    company_logo: string;
-    title: string;
-    company_name: string;
-    publication_date: string;
-  };
-  isActive: boolean;
+  jobItem: JobItem;
 };
 
 export default function JobListItem({ jobItem }: JobListItemProps) {
@@ -26,7 +20,7 @@ export default function JobListItem({ jobItem }: JobListItemProps) {
         </div>
 
         <div className='job-item__right'>
-          <BookmarkIcon id={jobItem?.id} />
+          <BookmarkIcon />
           <time className='job-item__time'>
             {getDayDifference(
               jobItem?.publication_date,

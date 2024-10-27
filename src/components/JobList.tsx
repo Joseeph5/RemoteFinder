@@ -1,8 +1,9 @@
+import { JobItem } from '../lib/types';
 import JobListItem from './JobListItem';
 import Spinner from './Spinner';
 
 type JobListProps = {
-  jobList: [];
+  jobList: JobItem[];
   isLoading: boolean;
 };
 
@@ -12,8 +13,8 @@ export function JobList({ isLoading, jobList }: JobListProps) {
       {isLoading ? (
         <Spinner />
       ) : (
-        jobList?.jobs &&
-        jobList?.jobs.map((jobItem) => (
+        jobList &&
+        jobList.map((jobItem) => (
           <JobListItem key={jobItem?.id} jobItem={jobItem} />
         ))
       )}
