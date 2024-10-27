@@ -1,8 +1,9 @@
 import { useEffect, useState } from 'react';
+import { JobItem } from './types';
 
 export function useJobItem(searchText: string) {
-  const [isLoading, setIsLoading] = useState(false);
-  const [jobList, setjobList] = useState([]);
+  const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [jobList, setjobList] = useState<JobItem[]>([]);
 
   useEffect(() => {
     if (!searchText) return;
@@ -11,7 +12,7 @@ export function useJobItem(searchText: string) {
 
     const fetchedData = async () => {
       const response = await fetch(
-        `https://remotive.com/api/remote-jobs?limit=10&search=${searchText}`
+        `https://remotive.com/api/remote-jobs?limit=15&search=${searchText}`
       );
 
       const data = await response.json();
@@ -27,5 +28,5 @@ export function useJobItem(searchText: string) {
   return {
     jobList,
     isLoading,
-  };
+  } as const;
 }

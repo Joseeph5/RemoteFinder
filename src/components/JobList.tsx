@@ -9,7 +9,12 @@ type JobListProps = {
 
 export function JobList({ isLoading, jobList }: JobListProps) {
   return (
-    <ul className='job-list'>
+    <ul
+      className='job-list'
+      style={{
+        overflowY: 'scroll',
+      }}
+    >
       {isLoading ? (
         <Spinner />
       ) : (

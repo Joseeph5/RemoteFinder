@@ -6,7 +6,7 @@ import Header from './Header';
 import { useJobItem } from '../lib/hooks';
 
 function App() {
-  const [searchText, setSearchText] = useState('');
+  const [searchText, setSearchText] = useState<string>('');
 
   const { jobList, isLoading } = useJobItem(searchText);
   return (
