@@ -3,7 +3,7 @@ import PaginationControls from './PaginationControls';
 import ResultsCount from './ResultsCount';
 import SortingControls from './SortingControls';
 
-export default function Sidebar({ jobList }) {
+export default function Sidebar({ jobList, isLoading }) {
   return (
     <div className='sidebar'>
       <div className='sidebar__top'>
@@ -11,10 +11,7 @@ export default function Sidebar({ jobList }) {
         <SortingControls />
       </div>
 
-      <JobList
-        isLoading={jobList.length === 0 ? true : false}
-        jobList={jobList}
-      />
+      <JobList isLoading={isLoading} jobList={jobList} />
 
       <PaginationControls />
     </div>

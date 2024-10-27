@@ -12,14 +12,18 @@ function App() {
   useEffect(() => {
     if (!searchText) return;
 
+    setIsLoading(true);
+
     const fetchedData = async () => {
       const response = await fetch(
-        `https://remotive.com/api/remote-jobs?limit=10`
+        `https://remotive.com/api/remote-jobs?limit=10&search=${searchText}`
       );
 
       const data = await response.json();
 
       setjobList(data);
+
+      setIsLoading(false);
     };
 
     fetchedData();
@@ -29,7 +33,7 @@ function App() {
     <>
       <Background />
       <Header searchText={searchText} setSearchText={setSearchText} />
-      <Container jobList={jobList} />
+      <Container jobList={jobList} isLoading={isLoading} />
       <Footer />
     </>
   );
