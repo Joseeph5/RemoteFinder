@@ -12,7 +12,7 @@ export function useJobItem(searchText: string) {
 
     const fetchedData = async () => {
       const response = await fetch(
-        `https://remotive.com/api/remote-jobs?limit=20&search=${searchText}`
+        `https://remotive.com/api/remote-jobs?search=${searchText}`
       );
 
       const data = await response.json();
