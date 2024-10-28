@@ -23,7 +23,9 @@ export default function JobItemContent({ jobItem }: JobItemContentProps) {
 
         <section className='job-info'>
           <div className='job-info__left'>
-            <div className='job-info__badge'>9T</div>
+            <div className='job-info__badge'>
+              <img src={jobItem?.company_logo} alt='' width={70} height={70} />
+            </div>
             <div className='job-info__below-badge'>
               <time className='job-info__time'>2d</time>
 
@@ -34,7 +36,7 @@ export default function JobItemContent({ jobItem }: JobItemContentProps) {
           <div className='job-info__right'>
             <h2 className='second-heading'>{jobItem.title}</h2>
             <p className='job-info__company'>{jobItem.company_name}</p>
-            <p className='job-info__description'>{jobItem.company_name}</p>
+
             <div className='job-info__extras'>
               <p className='job-info__extra'>
                 <i className='fa-solid fa-clock job-info__extra-icon'></i>
@@ -52,7 +54,13 @@ export default function JobItemContent({ jobItem }: JobItemContentProps) {
           </div>
         </section>
 
-        <div className='job-details__other'>
+        <div
+          className='job-details__other'
+          style={{
+            overflowY: 'scroll',
+            maxHeight: '428px',
+          }}
+        >
           <section className='qualifications'>
             <div className='qualifications__left'>
               <h4 className='fourth-heading'>Qualifications</h4>
@@ -67,7 +75,7 @@ export default function JobItemContent({ jobItem }: JobItemContentProps) {
             </ul>
           </section>
 
-          <section className='reviews'>
+          {/* <section className='reviews'>
             <div className='reviews__left'>
               <h4 className='fourth-heading'>Company reviews</h4>
               <p className='reviews__sub-text'>
@@ -78,6 +86,14 @@ export default function JobItemContent({ jobItem }: JobItemContentProps) {
               <li className='reviews__item'>Nice building and food also.</li>
               <li className='reviews__item'>Great working experience.</li>
             </ul>
+          </section> */}
+
+          <section className='description'>
+            <h4 className='fourth-heading'>Description </h4>
+            <br />
+            <div
+              dangerouslySetInnerHTML={{ __html: jobItem.description }}
+            ></div>
           </section>
         </div>
       </div>

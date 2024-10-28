@@ -28,7 +28,7 @@ export default function Sidebar({
         setSelectedJobItem={setSelectedJobItem}
       />
 
-      <PaginationControls />
+      {/* <PaginationControls /> */}
     </div>
   );
 }
