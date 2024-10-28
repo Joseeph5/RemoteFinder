@@ -1,6 +1,5 @@
 import { JobItem } from '../lib/types';
 import JobList from './JobList';
-import PaginationControls from './PaginationControls';
 import ResultsCount from './ResultsCount';
 import SortingControls from './SortingControls';
 
