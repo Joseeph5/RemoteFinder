@@ -8,6 +8,6 @@ export function getDayDifference(date1: string, date2: string): string {
   const differenceInDays = Math.round(differenceInTime / (1000 * 3600 * 24));
 
   return differenceInDays === 1
-    ? `${differenceInDays.toString()} Day ago`
-    : `${differenceInDays.toString()} Days ago`;
+    ? `${differenceInDays.toString()} Day`
+    : `${differenceInDays.toString()} Days`;
 }

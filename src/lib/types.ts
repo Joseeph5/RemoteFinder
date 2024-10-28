@@ -9,4 +9,5 @@ export type JobItem = {
   job_type: string;
   salary: string;
   tags: string[];
+  url: string;
 };

@@ -1,4 +1,5 @@
 import { JobItem } from '../lib/types';
+import { getDayDifference } from '../utils/job';
 import BookmarkIcon from './BookmarkIcon';
 import EmptyJobContent from './EmptyJobContent';
 
@@ -19,7 +20,9 @@ export default function JobItemContent({ jobItem }: JobItemContentProps) {
           alt='#'
         />
 
-        <a className='apply-btn'>Apply</a>
+        <a className='apply-btn' href={jobItem.url} target='_blank'>
+          Apply
+        </a>
 
         <section className='job-info'>
           <div className='job-info__left'>
@@ -27,7 +30,12 @@ export default function JobItemContent({ jobItem }: JobItemContentProps) {
               <img src={jobItem?.company_logo} alt='' width={70} height={70} />
             </div>
             <div className='job-info__below-badge'>
-              <time className='job-info__time'>2d</time>
+              <time className='job-info__time'>
+                {getDayDifference(
+                  jobItem?.publication_date,
+                  new Date().toDateString()
+                )}
+              </time>
 
               <BookmarkIcon />
             </div>
@@ -40,15 +48,15 @@ export default function JobItemContent({ jobItem }: JobItemContentProps) {
             <div className='job-info__extras'>
               <p className='job-info__extra'>
                 <i className='fa-solid fa-clock job-info__extra-icon'></i>
-                Full-Time
+                {jobItem.job_type}
               </p>
               <p className='job-info__extra'>
                 <i className='fa-solid fa-money-bill job-info__extra-icon'></i>
-                $105,000+
+                {jobItem.salary}
               </p>
               <p className='job-info__extra'>
                 <i className='fa-solid fa-location-dot job-info__extra-icon'></i>{' '}
-                Global
+                {jobItem.candidate_required_location}
               </p>
             </div>
           </div>
@@ -69,9 +77,9 @@ export default function JobItemContent({ jobItem }: JobItemContentProps) {
               </p>
             </div>
             <ul className='qualifications__list'>
-              <li className='qualifications__item'>React</li>
-              <li className='qualifications__item'>Next.js</li>
-              <li className='qualifications__item'>Tailwind CSS</li>
+              {jobItem.tags.map((tag) => {
+                return <li className='qualifications__item'>{tag}</li>;
+              })}
             </ul>
           </section>
 
