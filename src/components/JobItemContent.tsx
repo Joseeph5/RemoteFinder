@@ -1,6 +1,16 @@
+import { JobItem } from '../lib/types';
 import BookmarkIcon from './BookmarkIcon';
+import EmptyJobContent from './EmptyJobContent';
 
-export default function JobItemContent() {
+type JobItemContentProps = {
+  jobItem: JobItem | null;
+};
+
+export default function JobItemContent({ jobItem }: JobItemContentProps) {
+  if (!jobItem) {
+    return <EmptyJobContent />;
+  }
+
   return (
     <section className='job-details'>
       <div>
@@ -22,12 +32,9 @@ export default function JobItemContent() {
           </div>
 
           <div className='job-info__right'>
-            <h2 className='second-heading'>Front End React Engineer</h2>
-            <p className='job-info__company'>9th Tech</p>
-            <p className='job-info__description'>
-              Join us as we pursue our disruptive new vision to make machine
-              data accessible, usable, and valuable to everyone.
-            </p>
+            <h2 className='second-heading'>{jobItem.title}</h2>
+            <p className='job-info__company'>{jobItem.company_name}</p>
+            <p className='job-info__description'>{jobItem.company_name}</p>
             <div className='job-info__extras'>
               <p className='job-info__extra'>
                 <i className='fa-solid fa-clock job-info__extra-icon'></i>
