@@ -6,13 +6,19 @@ import Spinner from './Spinner';
 type JobListProps = {
   jobList: JobItem[];
   isLoading: boolean;
+  setSelectedJobItem: (jobItem: JobItem) => void;
 };
 
-export function JobList({ isLoading, jobList }: JobListProps) {
+export function JobList({
+  isLoading,
+  jobList,
+  setSelectedJobItem,
+}: JobListProps) {
   const [activeId, setActiveId] = useState<string>('');
 
-  const handleActiveClick = (id: string) => {
-    setActiveId(id);
+  const handleActiveClick = (jobItem: JobItem) => {
+    setActiveId(jobItem.id);
+    setSelectedJobItem(jobItem);
   };
   return (
     <ul

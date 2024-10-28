@@ -5,7 +5,7 @@ import { JobItem } from '../lib/types.ts';
 type JobListItemProps = {
   jobItem: JobItem;
   activeId: string;
-  handleActiveClick: (id: string) => void;
+  handleActiveClick: (jobItem: JobItem) => void;
 };
 
 export default function JobListItem({
@@ -16,7 +16,7 @@ export default function JobListItem({
   return (
     <li
       onClick={() => {
-        handleActiveClick(jobItem?.id);
+        handleActiveClick(jobItem);
       }}
       className={`job-item ${
         activeId === jobItem?.id ? 'job-item--active' : ''
