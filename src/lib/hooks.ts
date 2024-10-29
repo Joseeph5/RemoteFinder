@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { BASE_API_URL } from './constants';
 import { useQuery } from '@tanstack/react-query';
+import { handleError } from '../utils/job';
 
 const fetchJobItems = async (searchText: string) => {
   const response = await fetch(`${BASE_API_URL}?limit=50&search=${searchText}`);
@@ -22,7 +23,7 @@ export function useJobItems(searchText: string) {
       refetchOnWindowFocus: false,
       retry: false,
       enabled: Boolean(searchText),
-      onError: () => {},
+      onError: handleError,
     }
   );
 
