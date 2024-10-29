@@ -4,7 +4,7 @@ import JobListItem from './JobListItem';
 import Spinner from './Spinner';
 
 type JobListProps = {
-  jobList: JobItem[];
+  jobList: JobItem[] | undefined;
   isLoading: boolean;
   setSelectedJobItem: (jobItem: JobItem) => void;
 };

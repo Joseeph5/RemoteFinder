@@ -4,7 +4,7 @@ import JobItemContent from './JobItemContent';
 import Sidebar from './Sidebar';
 
 type ContainerProps = {
-  jobList: JobItem[];
+  jobList: JobItem[] | undefined;
   isLoading: boolean;
 };
 

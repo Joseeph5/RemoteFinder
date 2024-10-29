@@ -3,12 +3,13 @@ import Background from './Background';
 import Container from './Container';
 import Footer from './Footer';
 import Header from './Header';
-import { useDebounce, useJobItem } from '../lib/hooks';
+import { useDebounce, useJobItems } from '../lib/hooks';
 
 function App() {
   const [searchText, setSearchText] = useState<string>('');
   const debouncedSearchText = useDebounce(searchText, 500);
-  const { jobList, isLoading } = useJobItem(debouncedSearchText);
+  const { jobList, isLoading } = useJobItems(debouncedSearchText);
+
   return (
     <>
       <Background />

@@ -1,33 +1,34 @@
 import { useEffect, useState } from 'react';
-import { JobItem } from './types';
+import { BASE_API_URL } from './constants';
+import { useQuery } from '@tanstack/react-query';
 
-export function useJobItem(searchText: string) {
-  const [isLoading, setIsLoading] = useState<boolean>(false);
-  const [jobList, setjobList] = useState<JobItem[]>([]);
+const fetchJobItems = async (searchText: string) => {
+  const response = await fetch(`${BASE_API_URL}?limit=50&search=${searchText}`);
+  if (!response.ok) {
+    const errorData = await response.json();
+    throw new Error(errorData.description);
+  }
 
-  useEffect(() => {
-    if (!searchText) return;
+  const data = await response.json();
+  return data;
+};
 
-    setIsLoading(true);
-
-    const fetchedData = async () => {
-      const response = await fetch(
-        `https://remotive.com/api/remote-jobs?search=${searchText}`
-      );
-
-      const data = await response.json();
-
-      setjobList(data?.jobs);
-
-      setIsLoading(false);
-    };
-
-    fetchedData();
-  }, [searchText]);
+export function useJobItems(searchText: string) {
+  const { data, isInitialLoading } = useQuery(
+    ['job-items', searchText],
+    () => fetchJobItems(searchText),
+    {
+      staleTime: 1000 * 60 * 60,
+      refetchOnWindowFocus: false,
+      retry: false,
+      enabled: Boolean(searchText),
+      onError: () => {},
+    }
+  );
 
   return {
-    jobList,
-    isLoading,
+    jobList: data?.jobs,
+    isLoading: isInitialLoading,
   } as const;
 }
 
