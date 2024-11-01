@@ -11,3 +11,7 @@ export type JobItem = {
   tags: string[];
   url: string;
 };
+
+export type JobItemsApiResponse = {
+  jobs: JobItem[];
+};

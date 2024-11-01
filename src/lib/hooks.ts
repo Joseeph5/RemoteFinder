@@ -2,8 +2,11 @@ import { useEffect, useState } from 'react';
 import { BASE_API_URL } from './constants';
 import { useQuery } from '@tanstack/react-query';
 import { handleError } from '../utils/job';
+import { JobItemsApiResponse } from './types';
 
-const fetchJobItems = async (searchText: string) => {
+const fetchJobItems = async (
+  searchText: string
+): Promise<JobItemsApiResponse> => {
   const response = await fetch(`${BASE_API_URL}?limit=50&search=${searchText}`);
   if (!response.ok) {
     const errorData = await response.json();
