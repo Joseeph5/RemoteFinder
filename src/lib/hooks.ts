@@ -7,7 +7,7 @@ import { JobItemsApiResponse } from './types';
 const fetchJobItems = async (
   searchText: string
 ): Promise<JobItemsApiResponse> => {
-  const response = await fetch(`${BASE_API_URL}?limit=50&search=${searchText}`);
+  const response = await fetch(`${BASE_API_URL}?limit=30&search=${searchText}`);
   if (!response.ok) {
     const errorData = await response.json();
     throw new Error(errorData.description);
