@@ -4,7 +4,7 @@ export default function Footer() {
       <small>
         <p>
           © Copyright by{' '}
-          <a href='https://youssefbenamor.netlify.app/' target='_blank'>
+          <a href='https://youssefbenamor.me' target='_blank'>
             Youssef Benamor
           </a>
         </p>

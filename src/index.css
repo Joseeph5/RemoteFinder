@@ -200,7 +200,7 @@ body::-webkit-scrollbar {
   text-transform: lowercase;
   font-size: 13px;
   color: rgba(255, 255, 255, 0.75);
-  margin-left: 13px;
+  /* margin-left: 13px; */
   padding-left: 13px;
   position: relative;
   cursor: pointer;
