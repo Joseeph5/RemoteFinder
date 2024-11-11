@@ -1,7 +1,9 @@
+import { useState } from 'react';
 import { JobItem } from '../lib/types';
 import JobList from './JobList';
 import ResultsCount from './ResultsCount';
 import SortingControls from './SortingControls';
+import { sortJobsByDate } from '../utils/job';
 
 type SidebarProps = {
   jobList: JobItem[] | undefined;
@@ -14,16 +16,21 @@ export default function Sidebar({
   isLoading,
   setSelectedJobItem,
 }: SidebarProps) {
+  const [sortBy, setSortBy] = useState<string | null>(null);
+
+  const sortedJobItems =
+    sortBy && jobList?.length ? sortJobsByDate(jobList) : jobList;
+
   return (
     <div className='sidebar'>
       <div className='sidebar__top'>
         <ResultsCount jobsCount={jobList ? jobList.length : 0} />
-        <SortingControls />
+        <SortingControls onSortBy={setSortBy} />
       </div>
 
       <JobList
         isLoading={isLoading}
-        jobList={jobList}
+        jobList={sortedJobItems}
         setSelectedJobItem={setSelectedJobItem}
       />
 

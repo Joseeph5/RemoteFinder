@@ -1,4 +1,5 @@
 import toast from 'react-hot-toast';
+import { JobItem } from '../lib/types';
 
 export function getDayDifference(date1: string, date2: string): string {
   const timestamp1 = new Date(date1);
@@ -26,4 +27,13 @@ export const handleError = (error: unknown) => {
   }
 
   toast.error(message);
+};
+
+export const sortJobsByDate = (jobs: JobItem[]): JobItem[] => {
+  return [...(jobs || [])].sort((a, b) => {
+    return (
+      new Date(a.publication_date).getTime() -
+      new Date(b.publication_date).getTime()
+    );
+  });
 };
