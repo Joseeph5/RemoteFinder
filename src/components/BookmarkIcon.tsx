@@ -14,8 +14,10 @@ export default function BookmarkIcon({ id }: BookmarkIconProps) {
   return (
     <button
       className='bookmark-btn'
-      onClick={() => {
+      onClick={(e) => {
         handleToggleBookmark?.(id);
+        e.stopPropagation();
+        e.preventDefault();
       }}
     >
       <BookmarkFilledIcon
