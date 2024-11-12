@@ -32,8 +32,8 @@ export const handleError = (error: unknown) => {
 export const sortJobsByDate = (jobs: JobItem[]): JobItem[] => {
   return [...(jobs || [])].sort((a, b) => {
     return (
-      new Date(a.publication_date).getTime() -
-      new Date(b.publication_date).getTime()
+      new Date(b.publication_date).getTime() -
+      new Date(a.publication_date).getTime()
     );
   });
 };

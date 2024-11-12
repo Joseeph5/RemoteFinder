@@ -30,8 +30,10 @@ export function useJobItems(searchText: string) {
     }
   );
 
+  const newData = [...(data?.jobs || [])].reverse();
+
   return {
-    jobList: data?.jobs,
+    jobList: newData,
     isLoading: isInitialLoading,
   } as const;
 }
