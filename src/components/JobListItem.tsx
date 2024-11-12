@@ -33,7 +33,7 @@ export default function JobListItem({
         </div>
 
         <div className='job-item__right'>
-          <BookmarkIcon />
+          <BookmarkIcon id={+jobItem?.id} />
           <time className='job-item__time'>
             {getDayDifference(
               jobItem?.publication_date,

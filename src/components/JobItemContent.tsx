@@ -37,7 +37,7 @@ export default function JobItemContent({ jobItem }: JobItemContentProps) {
                 )}
               </time>
 
-              <BookmarkIcon />
+              <BookmarkIcon id={+jobItem.id} />
             </div>
           </div>
 
@@ -77,8 +77,12 @@ export default function JobItemContent({ jobItem }: JobItemContentProps) {
               </p>
             </div>
             <ul className='qualifications__list'>
-              {jobItem.tags.map((tag) => {
-                return <li className='qualifications__item'>{tag}</li>;
+              {jobItem.tags.map((tag, i) => {
+                return (
+                  <li key={i} className='qualifications__item'>
+                    {tag}
+                  </li>
+                );
               })}
             </ul>
           </section>
