@@ -4,7 +4,7 @@ import { JobItem } from '../lib/types.ts';
 
 type JobListItemProps = {
   jobItem: JobItem;
-  activeId: string;
+  activeId?: string;
   handleActiveClick: (jobItem: JobItem) => void;
 };
 

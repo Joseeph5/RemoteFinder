@@ -6,15 +6,17 @@ export default function BookmarksPopover() {
 
   return (
     <div className='bookmarks-popover'>
-      {bookmarkedIds.map((jobItem) => (
-        <div>{jobItem}</div>
-        // <JobListItem
-        //   key={jobItem?.id}
-        //   jobItem={jobItem}
-        //   handleActiveClick={handleActiveClick}
-        //   activeId={activeId}
-        // />
-      ))}
+      <ul>
+        {Object.values(bookmarkedIds).map((jobItem) => {
+          return (
+            <JobListItem
+              key={jobItem?.id}
+              jobItem={jobItem}
+              handleActiveClick={() => {}}
+            />
+          );
+        })}
+      </ul>
     </div>
   );
 }
