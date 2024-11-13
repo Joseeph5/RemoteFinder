@@ -12,7 +12,9 @@ export default function BookmarksPopover() {
             <JobListItem
               key={jobItem?.id}
               jobItem={jobItem}
-              handleActiveClick={() => {}}
+              handleActiveClick={() => {
+                window.open(jobItem.url, '_blank');
+              }}
             />
           );
         })}
