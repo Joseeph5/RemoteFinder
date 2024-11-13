@@ -1,9 +1,14 @@
 import { ReactNode, createContext } from 'react';
 import { useLocalStorage } from '../lib/hooks';
+import { JobItem } from '../lib/types';
 
 type BookmarksContext = {
-  bookmarkedIds: number[];
-  handleToggleBookmark: (id: number) => void;
+  bookmarkedIds: LocalStorageItems;
+  handleToggleBookmark: (item: JobItem) => void;
+};
+
+type LocalStorageItems = {
+  [key: number]: JobItem;
 };
 
 export const BookmarksContext = createContext<BookmarksContext | null>(null);
@@ -13,17 +18,23 @@ export default function BookmarksContextProvider({
 }: {
   children: ReactNode;
 }) {
-  const [bookmarkedIds, setBookmarkedIds] = useLocalStorage<number[]>(
+  const [bookmarkedIds, setBookmarkedIds] = useLocalStorage<LocalStorageItems>(
     'bookmarkedIds',
-    []
+    {}
   );
 
-  const handleToggleBookmark = (id: number) => {
-    if (bookmarkedIds.includes(id)) {
-      setBookmarkedIds((prev) => prev.filter((item) => item !== id));
-    } else {
-      setBookmarkedIds((prev) => [...prev, id]);
-    }
+  const handleToggleBookmark = (item: JobItem) => {
+    setBookmarkedIds((prev) => {
+      if (item.id in prev) {
+        const { [+item.id]: _, ...rest } = prev;
+        return rest;
+      } else {
+        return {
+          ...prev,
+          [item.id]: item,
+        };
+      }
+    });
   };
 
   return (

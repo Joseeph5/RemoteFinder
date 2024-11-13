@@ -37,7 +37,7 @@ export default function JobItemContent({ jobItem }: JobItemContentProps) {
                 )}
               </time>
 
-              <BookmarkIcon id={+jobItem.id} />
+              <BookmarkIcon jobItem={jobItem} />
             </div>
           </div>
 
