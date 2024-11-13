@@ -20,7 +20,7 @@ export default function BookmarksContextProvider({
 }) {
   const [bookmarkedIds, setBookmarkedIds] = useLocalStorage<LocalStorageItems>(
     'bookmarkedIds',
-    {}
+    {} as LocalStorageItems
   );
 
   const handleToggleBookmark = (item: JobItem) => {
