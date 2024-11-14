@@ -8,9 +8,7 @@ export default function JobItemsContextProvider({
 }: {
   children: React.ReactNode;
 }) {
-  const [selectedJobItem, setSelectedJobItem] = useState<JobItem>(
-    {} as JobItem
-  );
+  const [selectedJobItem, setSelectedJobItem] = useState<JobItem | null>(null);
 
   return (
     <JobItemsContext.Provider

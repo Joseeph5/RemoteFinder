@@ -26,6 +26,6 @@ export type BookmarksContextProps = {
 };
 
 export type JobItemsContextProps = {
-  selectedJobItem: JobItem;
+  selectedJobItem: JobItem | null;
   setSelectedJobItem: (JobItem: JobItem) => void;
 };

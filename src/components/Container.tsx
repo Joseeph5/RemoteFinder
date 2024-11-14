@@ -1,7 +1,7 @@
-import { useState } from 'react';
 import { JobItem } from '../lib/types';
 import JobItemContent from './JobItemContent';
 import Sidebar from './Sidebar';
+import { useJobItemsContext } from '../lib/hooks';
 
 type ContainerProps = {
   jobList: JobItem[] | undefined;
@@ -9,6 +9,8 @@ type ContainerProps = {
 };
 
 export default function Container({ jobList, isLoading }: ContainerProps) {
+  const { selectedJobItem, setSelectedJobItem } = useJobItemsContext();
+
   return (
     <div className='container'>
       <Sidebar

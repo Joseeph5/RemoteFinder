@@ -4,6 +4,7 @@ import { useQuery } from '@tanstack/react-query';
 import { handleError } from '../utils/job';
 import { JobItemsApiResponse } from './types';
 import { BookmarksContext } from '../contexts/BookmarksContextProvider';
+import { JobItemsContext } from '../contexts/JobItemsContextProvider';
 
 const fetchJobItems = async (
   searchText: string
@@ -93,4 +94,14 @@ export function useOnClickOutside(
       document.removeEventListener('click', handleClick);
     };
   }, [refs, handler]);
+}
+
+export function useJobItemsContext() {
+  const context = useContext(JobItemsContext);
+  if (!context) {
+    throw new Error(
+      'useJobItemsContext must be used within a JobItemsContextProvider'
+    );
+  }
+  return context;
 }

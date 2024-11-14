@@ -1,9 +1,10 @@
 import { forwardRef } from 'react';
-import { useBookmarksContext } from '../lib/hooks';
+import { useBookmarksContext, useJobItemsContext } from '../lib/hooks';
 import JobListItem from './JobListItem';
 
 const BookmarksPopover = forwardRef<HTMLDivElement>((_, ref) => {
   const { bookmarkedIds } = useBookmarksContext();
+  const { setSelectedJobItem } = useJobItemsContext();
 
   return (
     <div className='bookmarks-popover' ref={ref}>
@@ -13,8 +14,8 @@ const BookmarksPopover = forwardRef<HTMLDivElement>((_, ref) => {
             <JobListItem
               key={jobItem?.id}
               jobItem={jobItem}
-              handleActiveClick={() => {
-                window.open(jobItem.url, '_blank');
+              handleActiveClick={(item) => {
+                setSelectedJobItem(item);
               }}
             />
           );
