@@ -15,3 +15,12 @@ export type JobItem = {
 export type JobItemsApiResponse = {
   jobs: JobItem[];
 };
+
+export type LocalStorageItems = {
+  [key: number]: JobItem;
+};
+
+export type BookmarksContextProps = {
+  bookmarkedIds: LocalStorageItems;
+  handleToggleBookmark: (item: JobItem) => void;
+};

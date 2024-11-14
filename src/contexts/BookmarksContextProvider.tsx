@@ -1,17 +1,14 @@
 import { ReactNode, createContext } from 'react';
 import { useLocalStorage } from '../lib/hooks';
-import { JobItem } from '../lib/types';
+import {
+  BookmarksContextProps,
+  JobItem,
+  LocalStorageItems,
+} from '../lib/types';
 
-type BookmarksContext = {
-  bookmarkedIds: LocalStorageItems;
-  handleToggleBookmark: (item: JobItem) => void;
-};
-
-type LocalStorageItems = {
-  [key: number]: JobItem;
-};
-
-export const BookmarksContext = createContext<BookmarksContext | null>(null);
+export const BookmarksContext = createContext<BookmarksContextProps | null>(
+  null
+);
 
 export default function BookmarksContextProvider({
   children,
@@ -26,6 +23,7 @@ export default function BookmarksContextProvider({
   const handleToggleBookmark = (item: JobItem) => {
     setBookmarkedIds((prev) => {
       if (item.id in prev) {
+        // eslint-disable-next-line @typescript-eslint/no-unused-vars
         const { [+item.id]: _, ...rest } = prev;
         return rest;
       } else {
