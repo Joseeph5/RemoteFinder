@@ -1,11 +1,12 @@
+import { forwardRef } from 'react';
 import { useBookmarksContext } from '../lib/hooks';
 import JobListItem from './JobListItem';
 
-export default function BookmarksPopover() {
+const BookmarksPopover = forwardRef<HTMLDivElement>((_, ref) => {
   const { bookmarkedIds } = useBookmarksContext();
 
   return (
-    <div className='bookmarks-popover'>
+    <div className='bookmarks-popover' ref={ref}>
       <ul>
         {Object.values(bookmarkedIds).map((jobItem) => {
           return (
@@ -21,4 +22,6 @@ export default function BookmarksPopover() {
       </ul>
     </div>
   );
-}
+});
+
+export default BookmarksPopover;
