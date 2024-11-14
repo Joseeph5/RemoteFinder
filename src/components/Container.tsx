@@ -9,7 +9,6 @@ type ContainerProps = {
 };
 
 export default function Container({ jobList, isLoading }: ContainerProps) {
-  const [selectedJobItem, setSelectedJobItem] = useState<JobItem | null>(null);
   return (
     <div className='container'>
       <Sidebar

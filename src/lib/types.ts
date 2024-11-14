@@ -24,3 +24,8 @@ export type BookmarksContextProps = {
   bookmarkedIds: LocalStorageItems;
   handleToggleBookmark: (item: JobItem) => void;
 };
+
+export type JobItemsContextProps = {
+  selectedJobItem: JobItem;
+  setSelectedJobItem: (JobItem: JobItem) => void;
+};
