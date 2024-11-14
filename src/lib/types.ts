@@ -28,4 +28,11 @@ export type BookmarksContextProps = {
 export type JobItemsContextProps = {
   selectedJobItem: JobItem | null;
   setSelectedJobItem: (JobItem: JobItem) => void;
+  searchText: string;
+  setSearchText: (value: string) => void;
+  setSortBy: (value: string) => void;
+  sortedJobItems: JobItem[];
+  isLoading: boolean;
+  activeId: string;
+  setActiveId: (value: string) => void;
 };

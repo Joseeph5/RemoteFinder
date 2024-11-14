@@ -1,13 +1,11 @@
-import { JobItem } from '../lib/types';
+import { useJobItemsContext } from '../lib/hooks';
 import { getDayDifference } from '../utils/job';
 import BookmarkIcon from './BookmarkIcon';
 import EmptyJobContent from './EmptyJobContent';
 
-type JobItemContentProps = {
-  jobItem: JobItem | null;
-};
+export default function JobItemContent() {
+  const { selectedJobItem: jobItem } = useJobItemsContext();
 
-export default function JobItemContent({ jobItem }: JobItemContentProps) {
   if (!jobItem) {
     return <EmptyJobContent />;
   }

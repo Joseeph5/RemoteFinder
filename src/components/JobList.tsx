@@ -1,20 +1,16 @@
-import { useState } from 'react';
 import { JobItem } from '../lib/types';
 import JobListItem from './JobListItem';
 import Spinner from './Spinner';
+import { useJobItemsContext } from '../lib/hooks';
 
-type JobListProps = {
-  jobList: JobItem[] | undefined;
-  isLoading: boolean;
-  setSelectedJobItem: (jobItem: JobItem) => void;
-};
-
-export function JobList({
-  isLoading,
-  jobList,
-  setSelectedJobItem,
-}: JobListProps) {
-  const [activeId, setActiveId] = useState<string>('');
+export function JobList() {
+  const {
+    setSelectedJobItem,
+    setActiveId,
+    activeId,
+    isLoading,
+    sortedJobItems,
+  } = useJobItemsContext();
 
   const handleActiveClick = (jobItem: JobItem) => {
     setActiveId(jobItem.id);
@@ -30,8 +26,8 @@ export function JobList({
       {isLoading ? (
         <Spinner />
       ) : (
-        jobList &&
-        jobList.map((jobItem) => (
+        sortedJobItems &&
+        sortedJobItems.map((jobItem) => (
           <JobListItem
             key={jobItem?.id}
             jobItem={jobItem}

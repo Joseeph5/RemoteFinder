@@ -2,19 +2,14 @@ import BookmarksButton from './BookmarksButton';
 import Logo from './Logo';
 import SearchForm from './SearchForm';
 
-type HeaderProps = {
-  searchText: string;
-  setSearchText: React.Dispatch<React.SetStateAction<string>>;
-};
-
-export default function Header({ searchText, setSearchText }: HeaderProps) {
+export default function Header() {
   return (
     <header className='header'>
       <HeaderTop>
         <Logo />
         <BookmarksButton />
       </HeaderTop>
-      <SearchForm searchText={searchText} setSearchText={setSearchText} />
+      <SearchForm />
     </header>
   );
 }

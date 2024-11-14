@@ -1,8 +1,7 @@
-type SortingControlsProps = {
-  onSortBy: (value: string) => void;
-};
+import { useJobItemsContext } from '../lib/hooks';
 
-export default function SortingControls({ onSortBy }: SortingControlsProps) {
+export default function SortingControls() {
+  const { setSortBy } = useJobItemsContext();
   return (
     <section className='sorting'>
       <i className='fa-solid fa-arrow-down-short-wide'></i>
@@ -10,7 +9,7 @@ export default function SortingControls({ onSortBy }: SortingControlsProps) {
       <button
         className='sorting__button sorting__button--recent'
         onClick={() => {
-          onSortBy('recent');
+          setSortBy('recent');
         }}
       >
         Recent
