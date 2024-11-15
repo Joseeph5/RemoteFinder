@@ -5,6 +5,7 @@ import { handleError } from '../utils/job';
 import { JobItemsApiResponse } from './types';
 import { BookmarksContext } from '../contexts/BookmarksContextProvider';
 import { JobItemsContext } from '../contexts/JobItemsContextProvider';
+import { ActiveIdContext } from '../contexts/ActiveIdContextProvider';
 
 const fetchJobItems = async (
   searchText: string
@@ -101,6 +102,16 @@ export function useJobItemsContext() {
   if (!context) {
     throw new Error(
       'useJobItemsContext must be used within a JobItemsContextProvider'
+    );
+  }
+  return context;
+}
+
+export function useActiveIdContext() {
+  const context = useContext(ActiveIdContext);
+  if (!context) {
+    throw new Error(
+      'useActiveIdContext must be used within a ActiveIdContextProvider'
     );
   }
   return context;
