@@ -1,10 +1,10 @@
-import { useJobItemsContext } from '../lib/hooks';
+import { useActiveIdContext } from '../lib/hooks';
 import { getDayDifference } from '../utils/job';
 import BookmarkIcon from './BookmarkIcon';
 import EmptyJobContent from './EmptyJobContent';
 
 export default function JobItemContent() {
-  const { selectedJobItem: jobItem } = useJobItemsContext();
+  const { selectedJobItem: jobItem } = useActiveIdContext();
 
   if (!jobItem) {
     return <EmptyJobContent />;

@@ -1,30 +1,34 @@
 import { forwardRef } from 'react';
-import { useBookmarksContext, useJobItemsContext } from '../lib/hooks';
 import JobListItem from './JobListItem';
 import { createPortal } from 'react-dom';
+import { JobItem, LocalStorageItems } from '../lib/types';
 
-const BookmarksPopover = forwardRef<HTMLDivElement>((_, ref) => {
-  const { bookmarkedIds } = useBookmarksContext();
-  const { setSelectedJobItem } = useJobItemsContext();
+type JobListProps = {
+  setSelectedJobItem: (jobItem: JobItem) => void;
+  bookmarkedIds: LocalStorageItems;
+};
 
-  return createPortal(
-    <div className='bookmarks-popover' ref={ref}>
-      <ul>
-        {Object.values(bookmarkedIds).map((jobItem) => {
-          return (
-            <JobListItem
-              key={jobItem?.id}
-              jobItem={jobItem}
-              handleActiveClick={(item) => {
-                setSelectedJobItem(item);
-              }}
-            />
-          );
-        })}
-      </ul>
-    </div>,
-    document.body
-  );
-});
+const BookmarksPopover = forwardRef<HTMLDivElement, JobListProps>(
+  ({ bookmarkedIds, setSelectedJobItem }: JobListProps, ref) => {
+    return createPortal(
+      <div className='bookmarks-popover' ref={ref}>
+        <ul>
+          {Object.values(bookmarkedIds).map((jobItem) => {
+            return (
+              <JobListItem
+                key={jobItem?.id}
+                jobItem={jobItem}
+                handleActiveClick={(item) => {
+                  setSelectedJobItem(item);
+                }}
+              />
+            );
+          })}
+        </ul>
+      </div>,
+      document.body
+    );
+  }
+);
 
 export default BookmarksPopover;
